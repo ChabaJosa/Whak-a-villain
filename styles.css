@@ -1,0 +1,83 @@
+body{
+    background-color: #EB181F;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    /* margin-bottom: 100px; */
+}
+
+button{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 30px;
+  font-weight: bolder;
+  background-color: #FED541;
+  color: #6E111C;
+  padding: 20px 40px;
+  border: 0;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+main{
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(4, minmax(100px,200px));
+  grid-gap: 10px;
+  /* background-image:url('./images/shelf.png');
+  background-repeat: no-repeat;
+  background-position: top; 
+  background-attachment: inherit;
+  background-size: cover; */
+
+  /* border-left: 5px solid burlywood;
+  border-right: 5px solid burlywood; */
+}
+
+.character-bowl{
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+}
+
+.bowl{
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  border-bottom: 5px solid burlywood;
+  padding-bottom: 0.5px;
+}
+
+.character{
+  /* width: 70%; */
+  height:70%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index:0;
+  margin: 0 auto;
+  transition: all 0.4s;
+  cursor: pointer;
+  bottom: -50px
+}
+
+.up {
+  bottom: 50px;
+}
+
+body{
+  cursor:url('./images/Hammer.png'), auto;
+}
+button:hover{
+  cursor:url('./images/Hammer.png'), auto;
+}
+
+/* Until here everything works */
+
+#Logo{
+  width: 40%;
+  margin: 20px;
+}
