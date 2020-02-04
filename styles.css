@@ -16,7 +16,7 @@ button{
   padding: 20px 40px;
   border: 0;
   border-radius: 5px;
-  margin-top: 20px;
+  margin: 0px 20px 20px 20px;
 }
 
 main{
@@ -52,7 +52,6 @@ main{
 }
 
 .character{
-  /* width: 70%; */
   height:70%;
   position: absolute;
   left: 0;
@@ -68,16 +67,23 @@ main{
   bottom: 50px;
 }
 
-body{
-  cursor:url('./images/Hammer.png'), auto;
-}
-button:hover{
-  cursor:url('./images/Hammer.png'), auto;
+#Logo{
+  width: 40%;
+  margin: 20px;
 }
 
 /* Until here everything works */
 
-#Logo{
-  width: 40%;
-  margin: 20px;
+body{
+  cursor:url('./images/Hammer.png'), auto;
+}
+
+button:hover{
+  transition: all 0.4s;
+  cursor:url('./images/HammerRotated.png'), auto;
+}
+
+.character:hover{
+  transition: all 0.4s;
+  cursor:url('./images/HammerRotated.png'), auto;
 }

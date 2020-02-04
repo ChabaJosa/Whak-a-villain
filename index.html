@@ -10,9 +10,10 @@
   <body>
     <img src="./images/MarvelLogo.png" id="Logo">
     <h1>Whak-a-villain</h1>
-    <h3>Score <span id="score">0</span> / 10</h3>
+    <h3>Villain's score <span id="score">0</span> / 10</h3>
+    <h3>Your Score <span id="villainScore">0</span> / 10</h3>
     <button onclick="startGame()">Start</button>
-    <main>
+    <main id="main">
       <div class="character-bowl">
         <img src="./images/MarvelBowl.png" class="bowl">
         <img src="" class="character" onclick="bonk(this)">
@@ -56,6 +57,7 @@
     <main>
 
     <script src="./scripts/script.js"></script>
+    <script src="./scripts/functions.js"></script>
     
   </body>
 
