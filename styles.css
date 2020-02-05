@@ -1,14 +1,21 @@
+@font-face {
+  font-family: avengeance;
+  src: url(fonts/avengeance-font/Avengeance-E1zj.otf);
+}
+
 body{
     background-color: #EB181F;
     background-repeat: no-repeat;
     background-size: cover;
     text-align: center;
-    font-family: 'Courier New', Courier, monospace;
-    /* margin-bottom: 100px; */
+    font-family: avengeance;
+    color: #AEB3AF;
+    font-size: larger;
+
 }
 
 button{
-  font-family: 'Courier New', Courier, monospace;
+  font-family: avengeance;
   font-size: 30px;
   font-weight: bolder;
   background-color: #FED541;
