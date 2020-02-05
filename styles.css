@@ -9,10 +9,41 @@ body{
     background-size: cover;
     text-align: center;
     font-family: avengeance;
+    text-shadow: 2px 2px 10px #EB181F;
     color: #AEB3AF;
     font-size: larger;
-
 }
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+/* @keyframes flash_border {
+  0% {
+    border-color: #EB181F;
+  }
+  50% {
+    border-color: black;
+  }
+  100% {
+    border-color: #EB181F;
+  }
+} */
+
 
 button{
   font-family: avengeance;
@@ -31,6 +62,8 @@ main{
   justify-content: center;
   grid-template-columns: repeat(4, minmax(100px,200px));
   grid-gap: 10px;
+  /* background-image:url('./images/space.jpg'); */
+  /* background-size: cover; */
   /* background-image:url('./images/shelf.png');
   background-repeat: no-repeat;
   background-position: top; 
@@ -54,7 +87,8 @@ main{
   left: 0;
   right: 0;
   z-index: 1;
-  border-bottom: 5px solid burlywood;
+  border-bottom: 5px solid  #FED541;
+  border-radius: 10px;
   padding-bottom: 0.5px;
 }
 
@@ -77,20 +111,28 @@ main{
 #Logo{
   width: 40%;
   margin: 20px;
+  padding: 20px;
+  background-color: #EB181F;
+  border-radius: 20px;
 }
 
 /* Until here everything works */
 
 body{
   cursor:url('./images/Hammer.png'), auto;
+  background-image:url('./images/space2.jpg');
 }
 
 button:hover{
-  transition: all 0.4s;
+  transition: all 0.75s;
   cursor:url('./images/HammerRotated.png'), auto;
 }
 
 .character:hover{
   transition: all 0.4s;
   cursor:url('./images/HammerRotated.png'), auto;
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }

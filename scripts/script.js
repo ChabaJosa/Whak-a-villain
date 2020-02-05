@@ -12,14 +12,16 @@ let heroePaths      = ["./images/heroes/cap.png","./images/heroes/ironman.png","
 let villainPaths    = ["./images/villains/doom.png","./images/villains/thanos.png","./images/villains/galactus.png"];
 let elements        = document.getElementsByClassName("character");
 let main            = document.querySelector("#main")
-let coolPhrases     = ["Step it up","I can do a little faster","That was easy"]
+let coolPhrases     = ["Step it up","I can do a little faster","That was easy","That was Hawkeye easy","Next Level"];
+let victoryPhrases  = ["Hurray","Earth is safe thanks to you","You got them this time"];
+let failPhrases     = ["Thanos destroyed the universe, Thanks","Galactus ate the whole planet, Good Work","Dr. Doom leveled Earth, Kudos to you","We do not bonk heroes here"];
 let MI              = new Audio("./audio/MI.mp3");
 // let bonkSound       = new Audio("./audio/MI.mp3"); // Add bonk sound
 let startRange      = 200;
 let endRange        = 2000;
+let countVillains   = 0;
+const marvel        = `"window.location.href= 'https://www.marvel.com/';"`
 let time;
-
-
 
 
 
