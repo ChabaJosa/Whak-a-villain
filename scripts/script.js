@@ -18,7 +18,7 @@ let failPhrases     = ["Thanos destroyed the universe, Thanks","Galactus ate the
 let MI              = new Audio("./audio/MI.mp3");
 // let bonkSound       = new Audio("./audio/MI.mp3"); // Add bonk sound
 let startRange      = 200;
-let endRange        = 2000;
+let endRange        = 3000;
 let countVillains   = 0;
 const marvel        = `"window.location.href= 'https://www.marvel.com/';"`
 let time;

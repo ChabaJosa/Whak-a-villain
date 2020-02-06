@@ -12,10 +12,7 @@ function randomCharacter() {
         index = Math.floor(Math.random() * characters.length);
     };
     console.log('random bowl is called');
-    let random = Math.round(Math.random());
-    characters[index].isVillain = !random;
-    characters[index].src = random ? heroePaths[~~(Math.random() * heroePaths.length)] : villainPaths[~~(Math.random() * villainPaths.length)];
-    console.log("Random character added")
+    // characters[index].isVillain = !random;
     return characters[index];
   }
   
@@ -26,14 +23,19 @@ function randomTime(min, max) {
 
 // Ads up function to css, which adds 50 px to the bottom of the image making it popOut
 function popOut(character){
+    let random = Math.round(Math.random());
+    character.src = random===1 ? heroePaths[~~(Math.random() * heroePaths.length)] : villainPaths[~~(Math.random() * villainPaths.length)];
+    if (random===0){
+        character.isVillain = 0;
+        countVillains++
+    }
+    // console.log(character.src, character.isVillain);
     character.classList.add('up');
-    // console.log(character.src);
 }
 
 // Removes up property to get it back to it's initial spot
 function shrink(character){
     character.classList.remove('up');
-    character.isDisplayed = true;
 }
   
 // Stated on the html is an onclick event that calls this function
@@ -41,10 +43,10 @@ function shrink(character){
 // Calls shrink which automatically removes the Up class
 function bonk(character) {
     shrink(character)
-    if (character.isVillain==false){
+    if (character.isVillain!==0){ // If bonk hero, increase villain score
         vScore++;
         vScoreBoard.textContent = vScore;
-    } else {
+    } else { // If bonk villain, increase hero score
         score++;
         scoreBoard.textContent = score;
     } 
@@ -54,8 +56,8 @@ function bonk(character) {
 // Speeds up the pop
 function speedUp() {
     endRange -= 300;
-    startGame();
     level++;
+    startGame();
     levelBoard.textContent = level;
 }
   
@@ -72,37 +74,11 @@ function peep(firstCharacter) {
     // console.log(time)
     popOut(firstCharacter);
     setTimeout( () => { shrink(firstCharacter) }, time);
-    if(remainingPeeps > 0){
+    if (remainingPeeps > 0){
         // console.log(remainingPeeps)
         remainingPeeps--;
         let character = randomCharacter();
-        // setTimeout( () => { peep(character) }, time );
-
-        // if (character.isVillain===true){
-        //     countVillains++;
-        //     console.log('character.src', countVillains)
-        // }
-        
-
-        if (character.isDisplayed===true){
-            // console.log("Display == true")
-            character=randomCharacter();
-            setTimeout( () => { peep(character) }, time );
-            if (character.isVillain===true){
-                countVillains++;
-                //console.log('character.src', countVillains)
-            }
-            
-        } else {
-            setTimeout( () => { peep(character) }, time );
-        
-            if (character.isVillain===true){
-                countVillains++;
-                // console.log('character.src', countVillains)
-            }
-
-        }
-        console.log(character.src, character.isVillain);
+        setTimeout( () => { peep(character) }, time );
         
     } else { // Remaining Peeps done
         main.style.display="none";
@@ -126,8 +102,10 @@ function peep(firstCharacter) {
             console.log("Game over");
             // Play some audio here (Negative)
             button.textContent="Restart" // Actually start button
-            button.insertAdjacentHTML('beforebegin',`<h1>${failPhrases[Math.floor(Math.random() * failPhrases.length)]}</h1>`)
-            button.insertAdjacentHTML('afterend',`<button onclick=${marvel}>More  Marvel  Stuff</button>`)
+            button.insertAdjacentHTML('beforebegin',`<h1>${failPhrases[Math.floor(Math.random() * failPhrases.length)]}</h1>`);
+            button.insertAdjacentHTML('afterend',`<button onclick=${marvel}>More  Marvel  Stuff</button>`);
+            level=1;
+            endRange=3000;
         }
         
     }   
@@ -146,7 +124,7 @@ function startGame() {
         score=0;
         vScore=0;
         countVillains=0;
-        level=1;
+        // level=1;
         levelBoard.textContent = level;
         document.querySelectorAll("button")[1].remove();
         document.querySelectorAll("h1")[1].remove()
