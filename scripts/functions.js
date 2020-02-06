@@ -42,6 +42,7 @@ function shrink(character){
 // Adds to score
 // Calls shrink which automatically removes the Up class
 function bonk(character) {
+    hammer.play();
     shrink(character)
     if (character.isVillain!==0){ // If bonk hero, increase villain score
         vScore++;
@@ -55,7 +56,7 @@ function bonk(character) {
 
 // Speeds up the pop
 function speedUp() {
-    endRange -= 300;
+    endRange -= 500;
     level++;
     startGame();
     levelBoard.textContent = level;
@@ -68,6 +69,29 @@ function speedUp() {
 // If so, it decreases the remainingPeeps assign the variable character to a randomCharacter 
 // and peeps again after time(random).
 // The else at the end is what happens if the game is over
+
+function defineMI () {
+    if (level==1){
+        MI = new Audio("./audio/MIx100.mp3");
+        console.log(MI);
+    } else if (level==2){
+        MI = new Audio("./audio/MIx115.mp3");
+        console.log(MI);
+    } else if (level==3){
+        MI = new Audio("./audio/MIx130.mp3");
+        console.log(MI);
+    } else if (level==4){
+        MI = new Audio("./audio/MIx145.mp3");
+        console.log(MI);
+    } else if (level==5){
+        MI = new Audio("./audio/MIx160.mp3");
+        console.log(MI);
+    } else {
+        MI = new Audio("./audio/thanos.mp3");
+        console.log(MI);
+    }
+
+}
 
 function peep(firstCharacter) {
     time = randomTime(startRange, endRange);
@@ -115,6 +139,7 @@ function peep(firstCharacter) {
 // Sets the character variable to a random character and then calls peep.
 // Starts music
 function startGame() {
+    console.log("start");
 
     button.textContent="Start";
 
@@ -135,12 +160,28 @@ function startGame() {
 
     scoreBoard.textContent = 0;
     const firstCharacter = randomCharacter();
-    peep(firstCharacter);
-    console.log("start");
+    // peep(firstCharacter);
+    
+    
+    let height = 0; 
+    
+    let scrollInterval = setInterval(()=>{
+        height+=3
+        window.scrollTo(0,height);
+        
+        if(height >= document.body.scrollHeight){
+            clearInterval(scrollInterval)
+            peep(firstCharacter);
+        }
+        
+        
+    },1)
+    
+    
+    defineMI()
     MI.currentTime = 0;
     MI.play();
 
-    window.scrollTo(0,document.body.scrollHeight);
 
 }
   
