@@ -11,8 +11,7 @@ function randomCharacter() {
     while(characters[index].classList[1]==="up"){
         index = Math.floor(Math.random() * characters.length);
     };
-    console.log('random bowl is called');
-    // characters[index].isVillain = !random;
+    // console.log('random bowl is called');
     return characters[index];
   }
   
@@ -25,11 +24,11 @@ function randomTime(min, max) {
 function popOut(character){
     let random = Math.round(Math.random());
     character.src = random===1 ? heroePaths[~~(Math.random() * heroePaths.length)] : villainPaths[~~(Math.random() * villainPaths.length)];
-    if (random===0){
+    if (random===0){ // Dr strange is having issues here
         character.isVillain = 0;
         countVillains++
     }
-    // console.log(character.src, character.isVillain);
+    console.log(character.src, character.isVillain);
     character.classList.add('up');
 }
 
@@ -45,9 +44,11 @@ function bonk(character) {
     hammer.play();
     shrink(character)
     if (character.isVillain!==0){ // If bonk hero, increase villain score
+        console.log("hero bonked",character.src)
         vScore++;
         vScoreBoard.textContent = vScore;
     } else { // If bonk villain, increase hero score
+        console.log("villain bonked",character.src)
         score++;
         scoreBoard.textContent = score;
     } 
@@ -56,10 +57,22 @@ function bonk(character) {
 
 // Speeds up the pop
 function speedUp() {
-    endRange -= 500;
-    level++;
-    startGame();
-    levelBoard.textContent = level;
+    if (skip<1){ // When you run out of lives
+        document.querySelectorAll("h1")[1].remove();
+        document.querySelector("#skipButton").remove()
+        gameOver();
+    } else { // While you have lives left
+        endRange -= 500;
+        level++;
+        levelBoard.textContent = level;
+        
+        if(document.getElementById("skipButton")!==null){
+            skip--;
+        }
+
+        skipBoard.textContent = skip;
+        startGame();
+    }
 }
   
 // Calls randomTime which gives a random time/number within the values given and sets it to variable
@@ -73,24 +86,35 @@ function speedUp() {
 function defineMI () {
     if (level==1){
         MI = new Audio("./audio/MIx100.mp3");
-        console.log(MI);
+        // console.log(MI);
     } else if (level==2){
         MI = new Audio("./audio/MIx115.mp3");
-        console.log(MI);
+        // console.log(MI);
     } else if (level==3){
         MI = new Audio("./audio/MIx130.mp3");
-        console.log(MI);
+        // console.log(MI);
     } else if (level==4){
         MI = new Audio("./audio/MIx145.mp3");
-        console.log(MI);
+        // console.log(MI);
     } else if (level==5){
         MI = new Audio("./audio/MIx160.mp3");
-        console.log(MI);
+        // console.log(MI);
     } else {
         MI = new Audio("./audio/thanos.mp3");
-        console.log(MI);
+        // console.log(MI);
     }
+    
+}
 
+function gameOver (){
+    console.log("Game over");
+    // Play some audio here (Negative)
+    button.textContent="Restart" // Actually start button
+    button.insertAdjacentHTML('beforebegin',`<h1>${failPhrases[Math.floor(Math.random() * failPhrases.length)]}</h1>`);
+    button.insertAdjacentHTML('afterend',`<button onclick=${marvel}>More  Marvel  Stuff</button>`);
+    level=1;
+    endRange=3000;
+    skip=3;
 }
 
 function peep(firstCharacter) {
@@ -119,24 +143,17 @@ function peep(firstCharacter) {
                 console.log("Got a good Hero score")
                 button.textContent="Try again" // Actually start button
                 button.insertAdjacentHTML('beforebegin',`<h1>You missed ${countVillains-score} villains</h1>`);
-                button.insertAdjacentHTML('afterend',`<button onclick=${"speedUp()"}>Skip Level</button>`);
+                button.insertAdjacentHTML('afterend',`<button onclick=${"speedUp()"} id="skipButton">Skip Level</button>`);
             }
             
         } else {
-            console.log("Game over");
-            // Play some audio here (Negative)
-            button.textContent="Restart" // Actually start button
-            button.insertAdjacentHTML('beforebegin',`<h1>${failPhrases[Math.floor(Math.random() * failPhrases.length)]}</h1>`);
-            button.insertAdjacentHTML('afterend',`<button onclick=${marvel}>More  Marvel  Stuff</button>`);
-            level=1;
-            endRange=3000;
+            gameOver ()
         }
-        
     }   
 }
-  
+
 // Starts game
-// Sets the character variable to a random character and then calls peep.
+// Sets the character variable to a random character, scrolls and then calls peep.
 // Starts music
 function startGame() {
     console.log("start");
@@ -144,12 +161,13 @@ function startGame() {
     button.textContent="Start";
 
     if (main.style.display=="none"){
+        console.log("ifififi")
         main.style.display="";
         remainingPeeps=10;
         score=0;
         vScore=0;
         countVillains=0;
-        // level=1;
+        skipBoard.textContent = skip;
         levelBoard.textContent = level;
         document.querySelectorAll("button")[1].remove();
         document.querySelectorAll("h1")[1].remove()
@@ -157,7 +175,7 @@ function startGame() {
     };
 
     // button.disabled = true
-
+    vScoreBoard.textContent = 0;
     scoreBoard.textContent = 0;
     const firstCharacter = randomCharacter();
     // peep(firstCharacter);
@@ -185,7 +203,6 @@ function startGame() {
 
 }
   
-
 
 // [...elements].forEach(el =>
 //   el.addEventListener("click",function(){

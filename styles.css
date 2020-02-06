@@ -10,7 +10,7 @@ body{
     text-align: center;
     font-family: avengeance;
     text-shadow: 2px 2px 10px #EB181F;
-    color: #AEB3AF;
+    color: #FED541;
     font-size: larger;
 }
 
@@ -62,16 +62,6 @@ main{
   justify-content: center;
   grid-template-columns: repeat(4, minmax(100px,200px));
   grid-gap: 10px;
-  /* background-image:url('./images/space.jpg'); */
-  /* background-size: cover; */
-  /* background-image:url('./images/shelf.png');
-  background-repeat: no-repeat;
-  background-position: top; 
-  background-attachment: inherit;
-  background-size: cover; */
-
-  /* border-left: 5px solid burlywood;
-  border-right: 5px solid burlywood; */
 }
 
 .character-bowl{
