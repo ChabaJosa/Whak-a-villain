@@ -77,9 +77,12 @@ main{
   left: 0;
   right: 0;
   z-index: 1;
-  border-bottom: 5px solid  #FED541;
+  /* border-bottom: 5px solid  #FED541;
   border-radius: 10px;
+  padding-bottom: 0.5px; */
+  /* border-bottom: 10px solid transparent;
   padding-bottom: 0.5px;
+  border-image: url("./images/border-image.png") 30 round; */
 }
 
 .character{
@@ -118,6 +121,12 @@ button:hover{
   cursor:url('./images/HammerRotated.png'), auto;
 }
 
+button:active{
+  transition: all 0.75s;
+  cursor:url('./images/HammerHorizontal.png'), auto;
+}
+
+
 .character:hover{
   transition: all 0.4s;
   cursor:url('./images/HammerRotated.png'), auto;
@@ -125,4 +134,11 @@ button:hover{
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   perspective: 1000px;
+
+}
+
+.character:active{
+  transition: all 0.4s;
+  cursor:url('./images/HammerHorizontal.png'), auto;
+  
 }
