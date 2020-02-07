@@ -28,13 +28,14 @@ function popOut(character){
         character.isVillain = 0;
         countVillains++
     }
-    console.log(character.src, character.isVillain);
+    // console.log(character.src, character.isVillain);
     character.classList.add('up');
 }
 
 // Removes up property to get it back to it's initial spot
 function shrink(character){
     character.classList.remove('up');
+    // character.isVillain = undefined;
 }
   
 // Stated on the html is an onclick event that calls this function
@@ -44,14 +45,16 @@ function bonk(character) {
     hammer.play();
     shrink(character)
     if (character.isVillain!==0){ // If bonk hero, increase villain score
-        console.log("hero bonked",character.src)
+        console.log("hero bonked",character.src,character.isVillain);
         vScore++;
         vScoreBoard.textContent = vScore;
     } else { // If bonk villain, increase hero score
-        console.log("villain bonked",character.src)
+        console.log("villain bonked",character.src,character.isVillain);
         score++;
         scoreBoard.textContent = score;
+        character.isVillain = undefined;
     } 
+    // console.log(character.src, character.isVillain);
 
 }
 
