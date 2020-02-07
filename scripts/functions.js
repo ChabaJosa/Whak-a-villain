@@ -10,6 +10,7 @@ function randomCharacter() {
     let index = Math.floor(Math.random() * characters.length);
     while(characters[index].classList[1]==="up"){
         index = Math.floor(Math.random() * characters.length);
+        // console.log("Working")
     };
     return characters[index];
   }
@@ -23,10 +24,11 @@ function randomTime(min, max) {
 function popOut(character){
     let random = Math.round(Math.random());
     character.src = random===1 ? heroePaths[~~(Math.random() * heroePaths.length)] : villainPaths[~~(Math.random() * villainPaths.length)];
-    if (random===0 && remainingPeeps>0){ 
+    console.log("pop",character.src)
+    if (random===0 && remainingPeeps!=0){ 
         character.isVillain = 0;
         countVillains++
-        console.log("Villain number ",countVillains,character.src)
+        // console.log("Villain number ",countVillains,character.src)
     }
     // console.log(character.src, character.isVillain);
     character.classList.add('up');
@@ -34,9 +36,9 @@ function popOut(character){
 
 // Removes up property to get it back to it's initial spot
 function shrink(character){
-    character.classList.remove('up');
     setTimeout( () => { character.isVillain = undefined; character.src="" }, 200); // for portal bowl
-    console.log("isVillain",character.isVillain)
+    console.log("shrink","isVillain",character.isVillain)
+    character.classList.remove('up');
 }
   
 // Stated on the html is an onclick event that calls this function
@@ -117,14 +119,15 @@ function gameOver (){
 // The else at the end is what happens if the game is over
 function peep(firstCharacter) {
     time = randomTime(startRange, endRange);
-    popOut(firstCharacter);
+    popOut(firstCharacter); // console.log("First pop");
     setTimeout( () => { shrink(firstCharacter) }, time);
     if (remainingPeeps > 0){
         remainingPeeps--;
         let character = randomCharacter();
         setTimeout( () => { peep(character) }, time );
-        console.log(remainingPeeps,"remainingPeeps")
+        console.log("peep",remainingPeeps,"remainingPeeps")
     } else { // Remaining Peeps done
+        // characters[index].classList[1]==="up" // Checking if the up class has been removed might help
         main.style.display="none";
         MI.pause();
         button.disabled = false

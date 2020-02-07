@@ -94,10 +94,12 @@ main{
   margin: 0 auto;
   transition: all 0.4s;
   cursor: pointer;
-  bottom: -50px
+  bottom: -50px;
+  opacity: 0.3;
 }
 
 .up {
+  opacity: 1;
   bottom: 50px;
 }
 
@@ -109,7 +111,6 @@ main{
   border-radius: 20px;
 }
 
-/* Until here everything works */
 
 body{
   cursor:url('./images/Hammer.png'), auto;
@@ -134,11 +135,16 @@ button:active{
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   perspective: 1000px;
-
+  
 }
 
 .character:active{
   transition: all 0.4s;
   cursor:url('./images/HammerHorizontal.png'), auto;
   
+}
+
+/* Until here everything works */
+#text {
+  opacity: 1.0;
 }
