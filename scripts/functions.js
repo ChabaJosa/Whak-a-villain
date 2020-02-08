@@ -99,6 +99,32 @@ function defineMI () {
     }
 }
 
+function peepsOver () {
+
+    main.style.display="none";
+    MI.pause();
+    button.disabled = false
+    if (score>vScore){
+        console.log("Level over");
+        // Play some audio here (Postive)
+        if (score >= countVillains){
+            console.log("Got all the villains")
+            button.textContent="Play level again" // Actually start button
+            button.insertAdjacentHTML('beforebegin',`<h1>${victoryPhrases[Math.floor(Math.random() * victoryPhrases.length)]}</h1>`);
+            button.insertAdjacentHTML('afterend',`<button onclick=${"speedUp()"}>${coolPhrases[Math.floor(Math.random() * coolPhrases.length)]}</button>`);
+        } else {
+            console.log("Got a good Hero score")
+            button.textContent="Try again" // Actually start button 
+            button.insertAdjacentHTML('beforebegin',`<h1>You missed ${countVillains-score} villains</h1>`);
+            button.insertAdjacentHTML('afterend',`<button onclick=${"speedUp()"} id="skipButton">Skip Level</button>`);
+        }
+        
+    } else {
+        gameOver ()
+    }
+
+}
+
 function gameOver (){
     console.log("Game over");
     // Play some audio here (Negative)
@@ -128,27 +154,7 @@ function peep(firstCharacter) {
         console.log("peep",remainingPeeps,"remainingPeeps")
     } else { // Remaining Peeps done
         // characters[index].classList[1]==="up" // Checking if the up class has been removed might help
-        main.style.display="none";
-        MI.pause();
-        button.disabled = false
-        if (score>vScore){
-            console.log("Level over");
-            // Play some audio here (Postive)
-            if (score >= countVillains){
-                console.log("Got all the villains")
-                button.textContent="Play level again" // Actually start button
-                button.insertAdjacentHTML('beforebegin',`<h1>${victoryPhrases[Math.floor(Math.random() * victoryPhrases.length)]}</h1>`);
-                button.insertAdjacentHTML('afterend',`<button onclick=${"speedUp()"}>${coolPhrases[Math.floor(Math.random() * coolPhrases.length)]}</button>`);
-            } else {
-                console.log("Got a good Hero score")
-                button.textContent="Try again" // Actually start button 
-                button.insertAdjacentHTML('beforebegin',`<h1>You missed ${countVillains-score} villains</h1>`);
-                button.insertAdjacentHTML('afterend',`<button onclick=${"speedUp()"} id="skipButton">Skip Level</button>`);
-            }
-            
-        } else {
-            gameOver ()
-        }
+        peepsOver()
     }   
 }
 
